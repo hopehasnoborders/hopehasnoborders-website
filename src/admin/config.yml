@@ -513,5 +513,3 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Featured Image", name: "image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
-
-      - {label: "Body", name: "body", widget: "markdown"}
