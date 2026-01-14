@@ -49,7 +49,7 @@
     {% include "partials/nav.njk" %}
   </header>
 
-  <main class="flex-grow min-h-screen">
+  <main class="flex-grow min-h-screen {% if bodyClass != 'home-page' %}pt-32{% endif %}">
     {{ content | safe }}
   </main>
 
