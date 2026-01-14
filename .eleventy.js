@@ -10,7 +10,7 @@ module.exports = function (eleventyConfig) {
     });
 
     return {
-        pathPrefix: "/hopehasnoborders/",
+        pathPrefix: "/",
         dir: {
             input: "src",
             output: "_site",
