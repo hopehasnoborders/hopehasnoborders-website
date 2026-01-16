@@ -4,5 +4,6 @@ export default defineCliConfig({
     api: {
         projectId: 'fnj6du1o',
         dataset: 'production'
-    }
+    },
+    studioHost: 'hopeborders'
 })
