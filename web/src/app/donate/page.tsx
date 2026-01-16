@@ -1,26 +1,21 @@
-import { getClient } from '@/lib/sanity'
+import { sanityFetch } from '@/lib/sanity.server'
+import { urlFor } from '@/lib/sanity'
 import { donatePageQuery, siteSettingsQuery } from '@/lib/queries'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
 import { Hero } from '@/components/sections/Hero'
 import ClientTranslations from '../ClientTranslations'
 import { Heart, ShoppingBag, ArrowRight } from 'lucide-react'
-import { urlFor } from '@/lib/sanity'
-import { draftMode } from 'next/headers'
-
-export const revalidate = 60
 
 async function getDonateData() {
-    const draft = await draftMode()
     const [page, siteSettings] = await Promise.all([
-        getClient(draft.isEnabled).fetch(donatePageQuery),
-        getClient(draft.isEnabled).fetch(siteSettingsQuery)
-    ])
+        sanityFetch({ query: donatePageQuery, tags: ['donate', 'settings'] }),
+        sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+    ]) as [any, any]
     return { page, siteSettings }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-    const draft = await draftMode()
     const { page, siteSettings } = await getDonateData()
     return generatePageMetadata(page, siteSettings, 'en')
 }

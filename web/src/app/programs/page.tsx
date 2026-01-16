@@ -1,24 +1,19 @@
-import { getClient } from '@/lib/sanity'
+import { sanityFetch } from '@/lib/sanity.server'
 import { programsPageQuery, allProgramsQuery, siteSettingsQuery } from '@/lib/queries'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
 import { Hero, ProgramsGrid } from '@/components/sections'
-import { draftMode } from 'next/headers'
-
-export const revalidate = 60
 
 async function getProgramsData() {
-    const draft = await draftMode()
     const [page, programs, siteSettings] = await Promise.all([
-        getClient(draft.isEnabled).fetch(programsPageQuery),
-        getClient(draft.isEnabled).fetch(allProgramsQuery),
-        getClient(draft.isEnabled).fetch(siteSettingsQuery)
-    ])
+        sanityFetch({ query: programsPageQuery, tags: ['programs-page', 'settings'] }),
+        sanityFetch({ query: allProgramsQuery, tags: ['programs'] }),
+        sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+    ]) as [any, any, any]
     return { page, programs, siteSettings }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-    const draft = await draftMode()
     const { page, siteSettings } = await getProgramsData()
     return generatePageMetadata(page, siteSettings, 'en')
 }

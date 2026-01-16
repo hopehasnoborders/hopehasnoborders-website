@@ -1,13 +1,10 @@
-import { getClient } from '@/lib/sanity'
+import { sanityFetch } from '@/lib/sanity.server'
 import { resourcesPageQuery, siteSettingsQuery } from '@/lib/queries'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
 import { Hero } from '@/components/sections/Hero'
 import ClientTranslations from '../ClientTranslations'
 import { ExternalLink, Home, Heart, Scale, MapPin, Phone, Mail } from 'lucide-react'
-import { draftMode } from 'next/headers'
-
-export const revalidate = 60
 
 const IconMap: any = {
     home: Home,
@@ -19,16 +16,14 @@ const IconMap: any = {
 }
 
 async function getResourcesData() {
-    const draft = await draftMode()
     const [page, siteSettings] = await Promise.all([
-        getClient(draft.isEnabled).fetch(resourcesPageQuery),
-        getClient(draft.isEnabled).fetch(siteSettingsQuery)
-    ])
+        sanityFetch({ query: resourcesPageQuery, tags: ['resources', 'settings'] }),
+        sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+    ]) as [any, any]
     return { page, siteSettings }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-    const draft = await draftMode()
     const { page, siteSettings } = await getResourcesData()
     return generatePageMetadata(page, siteSettings, 'en')
 }

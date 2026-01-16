@@ -1,31 +1,26 @@
-import { getClient } from '@/lib/sanity'
+import { sanityFetch } from '@/lib/sanity.server'
 import { homePageQuery, allProgramsQuery, allTestimonialsQuery, siteSettingsQuery } from '@/lib/queries'
 import { Hero, VideoSection, ProgramsGrid, ImpactSection, Testimonials } from '@/components/sections'
 import { Heart } from 'lucide-react'
 import ClientTranslations from './ClientTranslations'
 import { generatePageMetadata } from '@/lib/seo'
 import { Metadata } from 'next'
-import { draftMode } from 'next/headers'
-
-export const revalidate = 60
 
 async function getHomeData() {
-  const draft = await draftMode()
   const [home, programs, testimonials, siteSettings] = await Promise.all([
-    getClient(draft.isEnabled).fetch(homePageQuery),
-    getClient(draft.isEnabled).fetch(allProgramsQuery),
-    getClient(draft.isEnabled).fetch(allTestimonialsQuery),
-    getClient(draft.isEnabled).fetch(siteSettingsQuery)
-  ])
+    sanityFetch({ query: homePageQuery, tags: ['home', 'settings'] }),
+    sanityFetch({ query: allProgramsQuery, tags: ['programs'] }),
+    sanityFetch({ query: allTestimonialsQuery, tags: ['testimonials'] }),
+    sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+  ]) as [any, any, any, any]
   return { home, programs, testimonials, siteSettings }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  const draft = await draftMode()
   const [home, siteSettings] = await Promise.all([
-    getClient(draft.isEnabled).fetch(homePageQuery),
-    getClient(draft.isEnabled).fetch(siteSettingsQuery)
-  ])
+    sanityFetch({ query: homePageQuery, tags: ['home'] }),
+    sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+  ]) as [any, any]
   return generatePageMetadata(home, siteSettings, 'en')
 }
 

@@ -1,25 +1,20 @@
-import { getClient } from '@/lib/sanity'
+import { sanityFetch } from '@/lib/sanity.server'
 import { volunteerPageQuery, siteSettingsQuery } from '@/lib/queries'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
 import { Hero } from '@/components/sections/Hero'
 import ClientTranslations from '../ClientTranslations'
 import { Heart, ArrowRight } from 'lucide-react'
-import { draftMode } from 'next/headers'
-
-export const revalidate = 60
 
 async function getVolunteerData() {
-    const draft = await draftMode()
     const [page, siteSettings] = await Promise.all([
-        getClient(draft.isEnabled).fetch(volunteerPageQuery),
-        getClient(draft.isEnabled).fetch(siteSettingsQuery)
-    ])
+        sanityFetch({ query: volunteerPageQuery, tags: ['volunteer', 'settings'] }),
+        sanityFetch({ query: siteSettingsQuery, tags: ['settings'] })
+    ]) as [any, any]
     return { page, siteSettings }
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-    const draft = await draftMode()
     const { page, siteSettings } = await getVolunteerData()
     return generatePageMetadata(page, siteSettings, 'en')
 }

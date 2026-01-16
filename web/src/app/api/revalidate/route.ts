@@ -1,4 +1,4 @@
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
 
 // Map Sanity document types to the paths that should be revalidated
@@ -13,6 +13,20 @@ const REVALIDATION_MAP: Record<string, string[]> = {
     program: ['/', '/programs'],
     testimonial: ['/', '/stories'],
     siteSettings: ['/', '/about', '/programs', '/stories', '/resources', '/volunteer', '/donate'],
+}
+
+// Map Sanity document types to cache tags for on-demand revalidation
+const TAG_MAP: Record<string, string[]> = {
+    pageHome: ['home'],
+    pageAbout: ['about'],
+    pagePrograms: ['programs-page'],
+    pageStories: ['stories'],
+    pageResources: ['resources'],
+    pageVolunteer: ['volunteer'],
+    pageDonate: ['donate'],
+    program: ['programs'],
+    testimonial: ['testimonials'],
+    siteSettings: ['settings'],
 }
 
 interface SanityWebhookPayload {
@@ -39,26 +53,33 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: 'No document type provided' }, { status: 400 })
         }
 
-        // Get paths to revalidate for this document type
-        const pathsToRevalidate = REVALIDATION_MAP[documentType]
+        // Get paths and tags to revalidate for this document type
+        const pathsToRevalidate = REVALIDATION_MAP[documentType] || []
+        const tagsToRevalidate = TAG_MAP[documentType] || []
 
-        if (!pathsToRevalidate || pathsToRevalidate.length === 0) {
-            console.log(`[Revalidate] No paths mapped for type: ${documentType}`)
+        if (pathsToRevalidate.length === 0 && tagsToRevalidate.length === 0) {
+            console.log(`[Revalidate] No paths or tags mapped for type: ${documentType}`)
             return NextResponse.json({
                 message: 'Document type not configured for revalidation',
                 type: documentType
             }, { status: 200 })
         }
 
-        // Revalidate each path
-        console.log(`[Revalidate] Revalidating paths for ${documentType}:`, pathsToRevalidate)
+        // Revalidate each tag (primary method for on-demand revalidation)
+        console.log(`[Revalidate] Revalidating tags for ${documentType}:`, tagsToRevalidate)
+        for (const tag of tagsToRevalidate) {
+            revalidateTag(tag)
+        }
 
+        // Revalidate each path (fallback)
+        console.log(`[Revalidate] Revalidating paths for ${documentType}:`, pathsToRevalidate)
         for (const path of pathsToRevalidate) {
             revalidatePath(path)
         }
 
         return NextResponse.json({
             revalidated: true,
+            tags: tagsToRevalidate,
             paths: pathsToRevalidate,
             documentType,
             timestamp: new Date().toISOString()

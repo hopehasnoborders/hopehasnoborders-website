@@ -16,7 +16,7 @@ interface SiteSettings {
 
 export function generatePageMetadata(
     pageData: any,
-    siteSettings: SiteSettings,
+    siteSettings: any,
     lang: 'en' | 'es' = 'en'
 ): Metadata {
     const seo = pageData?.seo || {}
