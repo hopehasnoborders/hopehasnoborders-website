@@ -2,9 +2,10 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { ArrowLeft, Send, AlertCircle, Loader2 } from 'lucide-react'
 import { useLanguage } from '@/lib/LanguageContext'
 import Link from 'next/link'
+import { Confetti, SuccessCheckmark } from '@/components/ui/SuccessAnimations'
 
 interface DonationFormProps {
     formType: string
@@ -109,28 +110,31 @@ export function DonationForm({ formType, title, description, suggestedItems, ico
 
                 {/* Success State */}
                 {submitStatus === 'success' && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="bg-green-50 border-2 border-green-500 rounded-2xl p-8 text-center mb-8"
-                    >
-                        <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                        <h2 className="text-2xl font-serif text-green-800 mb-2">
-                            {lang === 'es' ? '¡Gracias!' : 'Thank You!'}
-                        </h2>
-                        <p className="text-green-700">
-                            {lang === 'es'
-                                ? 'Tu oferta de donación ha sido enviada. Nos pondremos en contacto contigo pronto.'
-                                : 'Your donation offer has been sent. We will contact you soon.'
-                            }
-                        </p>
-                        <Link
-                            href="/volunteer"
-                            className="inline-block mt-6 bg-green-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-600 transition-colors"
+                    <>
+                        <Confetti trigger={true} particleCount={80} />
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="bg-green-50 border-2 border-green-500 rounded-2xl p-8 text-center mb-8 relative overflow-hidden"
                         >
-                            {lang === 'es' ? 'Volver a Voluntariado' : 'Back to Volunteer'}
-                        </Link>
-                    </motion.div>
+                            <SuccessCheckmark show={true} />
+                            <h2 className="text-2xl font-serif text-green-800 mb-2 mt-4">
+                                {lang === 'es' ? '¡Gracias!' : 'Thank You!'}
+                            </h2>
+                            <p className="text-green-700">
+                                {lang === 'es'
+                                    ? 'Tu oferta de donación ha sido enviada. Nos pondremos en contacto contigo pronto.'
+                                    : 'Your donation offer has been sent. We will contact you soon.'
+                                }
+                            </p>
+                            <Link
+                                href="/volunteer"
+                                className="inline-block mt-6 bg-green-500 text-white px-8 py-3 rounded-xl font-bold hover:bg-green-600 transition-colors"
+                            >
+                                {lang === 'es' ? 'Volver a Voluntariado' : 'Back to Volunteer'}
+                            </Link>
+                        </motion.div>
+                    </>
                 )}
 
                 {/* Error State */}
