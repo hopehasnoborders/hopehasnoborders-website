@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-// Initialize Resend with API key from environment variable
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 // This endpoint handles donation form submissions
 export async function POST(request: NextRequest) {
     try {
@@ -50,8 +47,13 @@ export async function POST(request: NextRequest) {
             </p>
         `.trim()
 
-        // Send email using Resend SDK
-        if (process.env.RESEND_API_KEY) {
+        // Send email using Resend SDK (only if API key is available)
+        const apiKey = process.env.RESEND_API_KEY
+
+        if (apiKey) {
+            // Initialize Resend inside the handler to avoid build-time errors
+            const resend = new Resend(apiKey)
+
             const { data, error } = await resend.emails.send({
                 from: 'Hope Has No Borders <onboarding@resend.dev>',
                 to: ['hhnbwebsite@gmail.com'],
