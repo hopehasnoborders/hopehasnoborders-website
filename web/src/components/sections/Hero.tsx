@@ -22,7 +22,7 @@ export function Hero({ hero }: HeroProps) {
 
     return (
         <header className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden">
-            <motion.div style={{ y }} className="absolute inset-0 z-0">
+            <motion.div style={{ y }} className="absolute inset-0 z-0 will-change-transform [backface-visibility:hidden] [transform:translate3d(0,0,0)]">
                 {hero.image ? (
                     <img
                         src={urlFor(hero.image).url()}
@@ -37,6 +37,8 @@ export function Hero({ hero }: HeroProps) {
                     />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                {/* Top gradient for nav readability */}
+                <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
             </motion.div>
 
             <div className="container mx-auto px-6 relative z-10 text-center max-w-5xl mt-24">

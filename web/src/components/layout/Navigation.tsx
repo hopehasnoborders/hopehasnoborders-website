@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, Globe } from 'lucide-react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useLanguage } from '@/lib/LanguageContext'
@@ -32,9 +33,16 @@ export function Navigation() {
             <div className="container mx-auto px-6 h-20 flex justify-between items-center">
                 <Link
                     href="/"
-                    className={`font-serif font-bold text-2xl tracking-widest z-50 transition-colors ${textColor}`}
+                    className="z-50"
                 >
-                    HHNB
+                    <Image
+                        src="/img/HOPE_Logo_A_Black_3x.avif"
+                        alt="Hope Has No Borders"
+                        width={120}
+                        height={40}
+                        className={`h-10 w-auto transition-all duration-500 ${scrolled || isOpen ? '' : 'invert'}`}
+                        priority
+                    />
                 </Link>
 
                 <div className="hidden md:flex items-center gap-8">
