@@ -177,7 +177,7 @@ export function ImpactSection({ data }: ImpactSectionProps) {
                     transition={{ duration: 0.8 }}
                 >
                     <h2 className="text-4xl md:text-6xl font-serif mb-6 inline-block relative group">
-                        {data.title ? t(data.title) : "Our Impact in Action"}
+                        {content.title ? t(content.title) : "Our Impact in Action"}
                         <motion.span
                             className="absolute -bottom-2 left-0 w-full h-1 bg-[var(--yarrow)] origin-left"
                             initial={{ scaleX: 0 }}
@@ -186,14 +186,14 @@ export function ImpactSection({ data }: ImpactSectionProps) {
                         />
                     </h2>
                     <p className="text-neutral-400 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-                        {data.subtitle ? t(data.subtitle) : "Making a tangible difference in our community."}
+                        {content.subtitle ? t(content.subtitle) : "Making a tangible difference in our community."}
                     </p>
                 </motion.div>
 
                 {/* 2. Key Metrics Grid */}
-                {data.keyMetrics && (
+                {content.keyMetrics && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
-                        {data.keyMetrics.map((metric, i) => (
+                        {content.keyMetrics.map((metric, i) => (
                             <motion.div
                                 key={i}
                                 initial={{ opacity: 0, y: 20 }}
@@ -215,10 +215,10 @@ export function ImpactSection({ data }: ImpactSectionProps) {
             </div>
 
             {/* 3. Program Impact Panels */}
-            {data.programs && (
+            {content.programs && (
                 <div className="container mx-auto px-6 py-24 relative z-10">
                     <div className="flex flex-col gap-24">
-                        {data.programs.map((program, i) => (
+                        {content.programs.map((program, i) => (
                             <motion.div
                                 key={program._id}
                                 initial={{ opacity: 0, x: i % 2 === 0 ? -50 : 50 }}
@@ -286,11 +286,11 @@ export function ImpactSection({ data }: ImpactSectionProps) {
             )}
 
             {/* 4. Outcome Metrics Strip */}
-            {data.outcomeMetrics && (
+            {content.outcomeMetrics && (
                 <div className="w-full bg-neutral-950 py-16 border-y border-white/5 relative z-10">
                     <div className="container mx-auto px-6">
                         <div className="flex flex-wrap justify-center gap-12 md:gap-24">
-                            {data.outcomeMetrics.map((metric, i) => (
+                            {content.outcomeMetrics.map((metric, i) => (
                                 <motion.div
                                     key={i}
                                     initial={{ scale: 0.8, opacity: 0 }}
@@ -317,31 +317,31 @@ export function ImpactSection({ data }: ImpactSectionProps) {
             {/* 5. Voices of Impact (Carousel) & 6. Closing CTA */}
             <div className="container mx-auto px-6 py-32 relative z-10 text-center">
                 {/* Carousel */}
-                {data.testimonials && data.testimonials.length > 0 && (
+                {content.testimonials && content.testimonials.length > 0 && (
                     <div className="mb-32 relative">
                         <Quote className="w-12 h-12 text-[var(--yarrow)] mx-auto mb-8 opacity-50" />
                         <div className="max-w-4xl mx-auto h-[200px] flex items-center justify-center relative">
                             {/* Simple fading carousel */}
-                            <Carousel testimonials={data.testimonials} />
+                            <Carousel testimonials={content.testimonials} />
                         </div>
                     </div>
                 )}
 
                 {/* Closing CTA */}
-                {data.closingCTA && (
+                {content.closingCTA && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="max-w-2xl mx-auto"
                     >
                         <h3 className="text-3xl md:text-4xl font-serif text-white mb-8">
-                            {data.closingCTA.message ? t(data.closingCTA.message) : "We couldn't do this without your support."}
+                            {content.closingCTA.message ? t(content.closingCTA.message) : "We couldn't do this without your support."}
                         </h3>
                         <Link
-                            href={data.closingCTA.link || '/donate'}
+                            href={content.closingCTA.link || '/donate'}
                             className="bg-[var(--yarrow)] text-black px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] hover:bg-white transition-all inline-block shadow-[0_0_20px_rgba(255,184,28,0.3)] hover:shadow-[0_0_30px_rgba(255,184,28,0.5)] transform hover:-translate-y-1"
                         >
-                            {t(data.closingCTA.text)}
+                            {t(content.closingCTA.text)}
                         </Link>
                     </motion.div>
                 )}
