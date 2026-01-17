@@ -54,12 +54,12 @@ export function ProgramsGrid({ header, programs }: ProgramsGridProps) {
                             <div
                                 key={program._id}
                                 onClick={() => setActiveCard(isOpen ? null : program._id)}
-                                className={`p-10 border transition-all duration-300 group cursor-pointer ${isOpen ? 'border-[#FFB81C] bg-orange-50/10 shadow-lg' : 'border-neutral-100 hover:border-[#FFB81C] hover:shadow-md'}`}
+                                className={`p-10 border transition-all duration-300 group cursor-pointer ${isOpen ? 'border-[var(--yarrow)] bg-orange-50/10 shadow-xl -translate-y-1' : 'border-neutral-100 hover:border-[var(--yarrow)] hover:shadow-xl hover:-translate-y-1'}`}
                             >
                                 <div className="flex items-center justify-between mb-8">
                                     <DynamicIcon
                                         name={program.icon}
-                                        className={`w-12 h-12 transition-colors ${isOpen ? 'text-[#FFB81C]' : 'text-neutral-300 group-hover:text-[#FFB81C]'}`}
+                                        className={`w-12 h-12 transition-colors ${isOpen ? 'text-[var(--yarrow)]' : 'text-neutral-300 group-hover:text-[var(--yarrow)]'}`}
                                     />
                                     <motion.div animate={{ rotate: isOpen ? 180 : 0 }}>
                                         <ChevronDown className="w-5 h-5 text-neutral-300" />
@@ -80,7 +80,7 @@ export function ProgramsGrid({ header, programs }: ProgramsGridProps) {
                                                 <p className="text-neutral-600 font-light mb-6 text-sm leading-relaxed antialiased">
                                                     {t(program.description)}
                                                 </p>
-                                                <a href="#" className="text-[10px] font-bold uppercase tracking-widest text-[#FFB81C] hover:text-black transition-colors flex items-center gap-2">
+                                                <a href="#" className="text-[10px] font-bold uppercase tracking-widest text-[var(--yarrow)] hover:text-black transition-colors flex items-center gap-2">
                                                     Learn More <ArrowRight size={12} />
                                                 </a>
                                             </div>

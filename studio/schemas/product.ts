@@ -11,6 +11,6 @@ export default {
         { name: 'price', title: 'Price', type: 'number' },
         { name: 'image', title: 'Image', type: 'image' },
         { name: 'active', title: 'Active?', type: 'boolean', initialValue: true },
-        { name: 'snipcartId', title: 'Snipcart ID', type: 'string' },
+        { name: 'stripePaymentLink', title: 'Stripe Payment Link URL', type: 'url', description: 'Paste the Stripe Payment Link from your Stripe Dashboard' },
     ]
 }

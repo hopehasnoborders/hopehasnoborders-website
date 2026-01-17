@@ -11,10 +11,29 @@ interface VideoSectionProps {
     } | null
 }
 
+import { LiteYouTube } from '@/components/ui/LiteYouTube'
+
+interface VideoSectionProps {
+    video: {
+        label: { en: string; es: string }
+        title: { en: string; es: string }
+        videoUrl: string
+        donateText: { en: string; es: string }
+    } | null
+}
+
+function getYoutubeId(url: string) {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/
+    const match = url.match(regExp)
+    return (match && match[2].length === 11) ? match[2] : null
+}
+
 export function VideoSection({ video }: VideoSectionProps) {
     const { t } = useLanguage()
 
     if (!video) return null
+
+    const videoId = getYoutubeId(video.videoUrl) || 'dQw4w9WgXcQ' // Fallback just in case
 
     return (
         <section className="py-32 bg-black text-white text-center border-t border-neutral-900">
@@ -26,13 +45,10 @@ export function VideoSection({ video }: VideoSectionProps) {
                     {t(video.title)}
                 </h2>
 
-                <div className="relative w-full aspect-video bg-neutral-900 mb-12 overflow-hidden rounded-sm shadow-2xl border border-neutral-800 group">
-                    <iframe
-                        className="w-full h-full"
-                        src={video.videoUrl}
+                <div className="mb-12 rounded-sm shadow-2xl border border-neutral-800">
+                    <LiteYouTube
+                        embedId={videoId}
                         title="Hope Has No Borders Mission Video"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
                     />
                 </div>
 

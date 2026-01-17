@@ -9,7 +9,9 @@ import { useLanguage } from '@/lib/LanguageContext'
 
 const NAV_LINKS = [
     { label: { en: 'About', es: 'Sobre' }, href: '/about' },
+    { label: { en: 'Team', es: 'Equipo' }, href: '/team' },
     { label: { en: 'Programs', es: 'Programas' }, href: '/programs' },
+    { label: { en: 'Shop', es: 'Tienda' }, href: '/shop' },
     { label: { en: 'Volunteer', es: 'Voluntariado' }, href: '/volunteer' },
 ]
 

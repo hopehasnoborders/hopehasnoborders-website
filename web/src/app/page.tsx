@@ -2,6 +2,7 @@ import { sanityFetch } from '@/lib/sanity.server'
 import { homePageQuery, allProgramsQuery, allTestimonialsQuery, siteSettingsQuery } from '@/lib/queries'
 import { Hero, VideoSection, ProgramsGrid, ImpactSection, Testimonials } from '@/components/sections'
 import { Heart } from 'lucide-react'
+import Link from 'next/link'
 import ClientTranslations from './ClientTranslations'
 import { generatePageMetadata } from '@/lib/seo'
 import { Metadata } from 'next'
@@ -47,15 +48,15 @@ export default async function Home() {
             es={<h2 className="text-3xl md:text-4xl font-serif mb-12 text-neutral-900 antialiased text-balance leading-tight">¿Cómo podemos ayudarte hoy?</h2>}
           />
           <div className="flex flex-col md:flex-row justify-center gap-6">
-            <button className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all">
+            <Link href="/resources" className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all text-center">
               <ClientTranslations en="I Need Help" es="Necesito Ayuda" />
-            </button>
-            <button className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all">
+            </Link>
+            <Link href="/volunteer" className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all text-center">
               <ClientTranslations en="I Want to Volunteer" es="Quiero Ser Voluntario" />
-            </button>
-            <button className="bg-[#FFB81C] border border-[#FFB81C] text-black px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all shadow-lg hover:shadow-xl">
+            </Link>
+            <Link href="/donate" className="bg-[#FFB81C] border border-[#FFB81C] text-black px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all shadow-lg hover:shadow-xl text-center">
               <ClientTranslations en="I Want to Donate" es="Quiero Donar" />
-            </button>
+            </Link>
           </div>
         </div>
       </section>

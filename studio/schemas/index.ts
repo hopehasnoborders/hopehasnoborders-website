@@ -9,6 +9,7 @@ import pageVolunteer from './pageVolunteer'
 import pageDonate from './pageDonate'
 import program from './program'
 import testimonial from './testimonial'
+import product from './product'
 
 export const schemaTypes = [
     // Singletons (one instance each)
@@ -23,4 +24,6 @@ export const schemaTypes = [
     // Document types (multiple instances)
     program,
     testimonial,
+    product,
 ]
+
