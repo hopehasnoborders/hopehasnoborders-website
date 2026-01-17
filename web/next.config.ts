@@ -17,6 +17,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/donate',
+        destination: 'https://www.paypal.com/donate/?hosted_button_id=JG5GT99FFDQ4L',
+        permanent: false,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

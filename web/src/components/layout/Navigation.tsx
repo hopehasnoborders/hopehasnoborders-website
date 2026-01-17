@@ -69,12 +69,14 @@ export function Navigation() {
                         {lang === 'en' ? 'ES' : 'EN'}
                     </button>
 
-                    <Link
-                        href="/donate"
+                    <a
+                        href="https://www.paypal.com/donate/?hosted_button_id=JG5GT99FFDQ4L"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-neutral-900 text-white hover:bg-[#FFB81C] px-6 py-3 rounded-sm text-[10px] font-bold uppercase tracking-[0.2em] transition-all"
                     >
                         Donate
-                    </Link>
+                    </a>
                 </div>
 
                 <button
@@ -109,13 +111,15 @@ export function Navigation() {
 
                             <div className="w-12 h-px bg-white/20 my-4" />
 
-                            <Link
-                                href="/donate"
+                            <a
+                                href="https://www.paypal.com/donate/?hosted_button_id=JG5GT99FFDQ4L"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 onClick={() => setIsOpen(false)}
                                 className="text-3xl font-serif text-[#FFB81C] hover:text-white transition-colors text-center"
                             >
                                 Donate
-                            </Link>
+                            </a>
 
                             <button
                                 onClick={() => {
