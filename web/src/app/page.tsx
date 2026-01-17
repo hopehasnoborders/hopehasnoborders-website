@@ -33,16 +33,13 @@ export default async function Home() {
     <div className="flex flex-col">
       <Hero hero={home?.hero} />
 
-      <ImpactSection data={home?.impactSection} />
-
-      <VideoSection video={home?.videoSection} />
-
+      {/* Immediate Help - Comprehensive Support for Immigrants (Most Urgent) */}
       <ProgramsGrid
         header={home?.servicesSection}
         programs={programs}
       />
 
-      {/* CTA Block */}
+      {/* CTA Block - How can we help you today? */}
       <section className="py-24 bg-white border-t border-neutral-100">
         <div className="container mx-auto px-6 text-center">
           <ClientTranslations
@@ -50,19 +47,22 @@ export default async function Home() {
             es={<h2 className="text-3xl md:text-4xl font-serif mb-12 text-neutral-900 antialiased text-balance leading-tight">¿Cómo podemos ayudarte hoy?</h2>}
           />
           <div className="flex flex-col md:flex-row justify-center gap-6">
-            <Link href="/resources" className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all text-center">
+            <Link href="/resources" className="bg-[var(--yarrow)] border border-[var(--yarrow)] text-black px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all shadow-lg hover:shadow-xl text-center">
               <ClientTranslations en="I Need Help" es="Necesito Ayuda" />
             </Link>
             <Link href="/volunteer" className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all text-center">
               <ClientTranslations en="I Want to Volunteer" es="Quiero Ser Voluntario" />
             </Link>
-            <Link href="/donate" className="bg-[#FFB81C] border border-[#FFB81C] text-black px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all shadow-lg hover:shadow-xl text-center">
+            <Link href="/donate" className="bg-white border border-neutral-200 px-10 py-5 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-black hover:text-white hover:border-black transition-all text-center">
               <ClientTranslations en="I Want to Donate" es="Quiero Donar" />
             </Link>
           </div>
         </div>
       </section>
 
+      <VideoSection video={home?.videoSection} />
+
+      {/* Impact Metrics - Show our track record */}
       <ImpactSection data={home?.impactSection} />
 
       <Testimonials testimonials={testimonials} />

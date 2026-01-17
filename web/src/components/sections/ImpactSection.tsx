@@ -96,7 +96,7 @@ const DEFAULT_IMPACT_DATA = {
             _id: 'p1',
             title: { en: 'Crisis to HOPE Fund', es: 'Fondo Crisis a ESPERANZA' },
             summary: { en: 'Emergency Stabilization', es: 'Estabilización de Emergencia' },
-            image: null,
+            image: '/img/program-crisis.jpg',
             impactMetrics: [
                 { value: '667', label: { en: 'People Supported', es: 'Personas Apoyadas' } },
                 { value: '333', label: { en: 'Children Supported', es: 'Niños Apoyados' } },
@@ -107,7 +107,7 @@ const DEFAULT_IMPACT_DATA = {
             _id: 'p2',
             title: { en: 'Pathways to HOPE', es: 'Caminos a la ESPERANZA' },
             summary: { en: 'Pro Se Support', es: 'Apoyo Pro Se' },
-            image: null,
+            image: '/img/program-pathways.jpg',
             impactMetrics: [
                 { value: '1,030', label: { en: 'Asylum Applications', es: 'Solicitudes de Asilo' } },
                 { value: '431', label: { en: 'Work Authorizations', es: 'Permisos de Trabajo' } },
@@ -117,7 +117,7 @@ const DEFAULT_IMPACT_DATA = {
             _id: 'p3',
             title: { en: 'HOPE Community Services', es: 'Servicios Comunitarios' },
             summary: { en: 'Partnership Projects', es: 'Proyectos de Asociación' },
-            image: null,
+            image: '/img/program-community.jpg',
             impactMetrics: [
                 { value: '$36,770', label: { en: 'Direct Gifts', es: 'Regalos Directos' } },
                 { value: '1,970', label: { en: 'Volunteer Hours', es: 'Horas de Voluntariado' } },
@@ -127,7 +127,7 @@ const DEFAULT_IMPACT_DATA = {
             _id: 'p4',
             title: { en: 'HOPE Host Home Program', es: 'Programa de Alojamiento' },
             summary: { en: 'Transitional Housing', es: 'Vivienda de Transición' },
-            image: null,
+            image: '/img/program-housing.jpg',
             impactMetrics: [
                 { value: '55', label: { en: 'Individuals Housed', es: 'Individuos Alojados' } },
                 { value: '100%', label: { en: 'Permanent Housing', es: 'Vivienda Permanente' } },
@@ -264,7 +264,7 @@ export function ImpactSection({ data }: ImpactSectionProps) {
                                     <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
                                         {program.image ? (
                                             <Image
-                                                src={urlForImage(program.image).url()}
+                                                src={typeof program.image === 'string' ? program.image : urlForImage(program.image).url()}
                                                 alt={t(program.title)}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
