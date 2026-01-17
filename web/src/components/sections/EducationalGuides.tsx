@@ -115,17 +115,18 @@ export function EducationalGuides() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: i * 0.1 }}
+                            className="h-full"
                         >
                             <Link
                                 href={guide.link || '#'}
-                                className="block group"
+                                className="block group h-full"
                             >
-                                <div className="bg-white border-2 border-[var(--forrest)]/10 hover:border-[var(--yarrow)] rounded-xl p-6 md:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex items-start gap-4">
+                                <div className="bg-white border-2 border-[var(--forrest)]/10 hover:border-[var(--yarrow)] rounded-xl p-6 md:p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex items-start gap-4 h-full">
                                     <div className="w-12 h-12 bg-[var(--yarrow)] rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
                                         <BookOpen className="w-6 h-6 text-black" />
                                     </div>
-                                    <div className="flex-grow">
-                                        <h3 className="text-lg md:text-xl font-serif text-[var(--forrest)] group-hover:text-black transition-colors mb-2 leading-snug">
+                                    <div className="flex-grow flex flex-col justify-between h-full">
+                                        <h3 className="text-lg md:text-xl font-serif text-[var(--forrest)] group-hover:text-black transition-colors mb-3 leading-snug">
                                             {t(guide.title)}
                                         </h3>
                                         <div className="flex items-center gap-2 text-[var(--yarrow)] font-bold text-xs uppercase tracking-widest">
@@ -157,7 +158,7 @@ export function EducationalGuides() {
                         {COMING_SOON_GUIDES.map((guide, i) => (
                             <div
                                 key={i}
-                                className="bg-white/10 border border-white/20 rounded-lg p-5 flex items-start gap-3"
+                                className="bg-white/10 border border-white/20 rounded-lg p-5 flex items-start gap-3 h-full"
                             >
                                 <div className="w-8 h-8 bg-white/20 rounded-md flex items-center justify-center flex-shrink-0">
                                     <Clock className="w-4 h-4 text-[var(--yarrow)]" />
