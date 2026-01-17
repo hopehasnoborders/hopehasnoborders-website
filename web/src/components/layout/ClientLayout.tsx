@@ -7,7 +7,7 @@ import { LanguageProvider } from '@/lib/LanguageContext'
 import { Navigation, Footer } from '@/components/layout'
 
 // --- CONFIGURATION ---
-const BANNER_CONFIG = {
+const DEFAULT_BANNER_CONFIG = {
     DURATION: 150, // Time in seconds for one full loop. Higher = Slower.
 }
 
@@ -15,6 +15,10 @@ interface ClientLayoutProps {
     children: ReactNode
     announcement: {
         active: boolean
+        scrollSpeed?: number // Controls duration
+        size?: 'normal' | 'large' | 'xl'
+        textColor?: string
+        backgroundColor?: string
         label?: { en: string; es: string }
         text: { en: string; es: string }
         linkText?: { en: string; es: string }
@@ -82,15 +86,32 @@ function AnnouncementBarClient({ announcement }: { announcement: NonNullable<Cli
         </div>
     )
 
+
+    // Dynamic Styles based on props
+    const speed = announcement.scrollSpeed || DEFAULT_BANNER_CONFIG.DURATION
+    const bannerSize = announcement.size || 'normal'
+    const customTextColor = announcement.textColor || 'inherit'
+    const customBgColor = announcement.backgroundColor || '#FFB81C'
+
+    // Size mappings
+    const heightClass = bannerSize === 'xl' ? 'h-16' : bannerSize === 'large' ? 'h-12' : 'h-10'
+    const fontSizeClass = bannerSize === 'xl' ? 'text-sm md:text-base' : bannerSize === 'large' ? 'text-xs md:text-sm' : 'text-[10px] md:text-xs'
+
     return (
-        <div className="bg-[#FFB81C] text-neutral-900 w-full z-50 relative h-10 overflow-hidden flex items-center">
+        <div
+            className={`w-full z-50 relative overflow-hidden flex items-center ${heightClass}`}
+            style={{
+                backgroundColor: customBgColor,
+                color: customTextColor
+            }}
+        >
             <motion.div
                 className="flex whitespace-nowrap"
                 animate={{ x: "-50%" }}
                 transition={{
                     repeat: Infinity,
                     ease: "linear",
-                    duration: BANNER_CONFIG.DURATION
+                    duration: speed
                 }}
             >
                 {/* Container for the loop. 
@@ -99,7 +120,22 @@ function AnnouncementBarClient({ announcement }: { announcement: NonNullable<Cli
                 */}
                 <div className="flex items-center">
                     {[...Array(12)].map((_, i) => (
-                        <BannerContent key={i} />
+                        <div key={i} className={`flex items-center ${fontSizeClass}`}>
+                            <span className="opacity-80 font-bold uppercase tracking-widest">
+                                {label}
+                            </span>
+                            <span className="mx-2 font-extrabold uppercase tracking-widest">
+                                {text}
+                            </span>
+                            <button
+                                onClick={handleClick}
+                                className="flex items-center gap-1 hover:opacity-70 transition-opacity ml-2 border-b border-current font-bold uppercase tracking-widest"
+                            >
+                                {linkText} <ArrowRight size={bannerSize === 'xl' ? 16 : 12} />
+                            </button>
+                            {/* Divider Dot between repeated messages */}
+                            <div className="w-1.5 h-1.5 rounded-full bg-current opacity-40 mx-8" />
+                        </div>
                     ))}
                 </div>
             </motion.div>

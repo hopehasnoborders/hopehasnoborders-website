@@ -11,6 +11,11 @@ export default {
         { name: 'price', title: 'Price', type: 'number' },
         { name: 'image', title: 'Image', type: 'image' },
         { name: 'active', title: 'Active?', type: 'boolean', initialValue: true },
-        { name: 'stripePaymentLink', title: 'Stripe Payment Link URL', type: 'url', description: 'Paste the Stripe Payment Link from your Stripe Dashboard' },
+        {
+            name: 'stripePaymentLink',
+            title: 'Stripe Payment Link URL',
+            type: 'url',
+            description: '1. Go to your Stripe Dashboard -> Products. 2. Create a Product. 3. Look for "Payment Link" and copy the URL. 4. Paste it here.'
+        },
     ]
 }

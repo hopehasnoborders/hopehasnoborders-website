@@ -21,6 +21,30 @@ export default defineType({
             description: 'Emergency or promotional banner shown at the top of every page.',
             fields: [
                 defineField({ name: 'active', title: 'Is Active?', type: 'boolean' }),
+                defineField({
+                    name: 'scrollSpeed',
+                    title: 'Scroll Speed',
+                    type: 'number',
+                    description: 'Controls how fast the banner moves. Lower number = Faster. Default is 150.',
+                    initialValue: 150,
+                    validation: Rule => Rule.min(10).max(500)
+                }),
+                defineField({
+                    name: 'size',
+                    title: 'Banner Scale',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: 'Normal', value: 'normal' },
+                            { title: 'Large', value: 'large' },
+                            { title: 'Extra Large', value: 'xl' },
+                        ],
+                        layout: 'radio'
+                    },
+                    initialValue: 'normal'
+                }),
+                defineField({ name: 'textColor', title: 'Text Color (Hex)', type: 'string', description: 'Optional. e.g., #000000' }),
+                defineField({ name: 'backgroundColor', title: 'Background Color (Hex)', type: 'string', description: 'Optional. e.g., #FFB81C' }),
                 i18nString('label', 'Top Small Label (e.g. "Urgent:")'),
                 i18nText('text', 'Banner Text'),
                 i18nString('linkText', 'Link Text (e.g. "Learn More")'),

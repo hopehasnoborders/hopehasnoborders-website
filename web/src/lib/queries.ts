@@ -10,6 +10,10 @@ export const siteSettingsQuery = `*[_type == "siteSettings"][0] {
   description,
   announcement {
     active,
+    scrollSpeed,
+    size,
+    textColor,
+    backgroundColor,
     label,
     text,
     linkText,

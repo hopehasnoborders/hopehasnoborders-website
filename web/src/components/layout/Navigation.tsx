@@ -11,6 +11,7 @@ const NAV_LINKS = [
     { label: { en: 'About', es: 'Sobre' }, href: '/about' },
     { label: { en: 'Team', es: 'Equipo' }, href: '/team' },
     { label: { en: 'Programs', es: 'Programas' }, href: '/programs' },
+    { label: { en: 'Resources', es: 'Recursos' }, href: '/resources' },
     { label: { en: 'Shop', es: 'Tienda' }, href: '/shop' },
     { label: { en: 'Volunteer', es: 'Voluntariado' }, href: '/volunteer' },
 ]
@@ -78,10 +79,10 @@ export function Navigation() {
 
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="md:hidden z-50"
+                    className="md:hidden z-[110]"
                     aria-label="Toggle menu"
                 >
-                    {isOpen ? <X className="text-neutral-900" /> : <Menu className={textColor} />}
+                    {isOpen ? <X className="text-white" /> : <Menu className={textColor} />}
                 </button>
             </div>
 
@@ -91,34 +92,41 @@ export function Navigation() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center gap-8"
+                        className="fixed inset-0 bg-neutral-900 z-[100] flex flex-col items-center justify-center gap-8 h-[100dvh]"
                     >
-                        {NAV_LINKS.map((link) => (
+                        {/* Mobile Menu Content */}
+                        <div className="flex flex-col items-center gap-6">
+                            {NAV_LINKS.map((link) => (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    onClick={() => setIsOpen(false)}
+                                    className="text-3xl font-serif text-white hover:text-[#FFB81C] transition-colors text-center"
+                                >
+                                    {t(link.label)}
+                                </Link>
+                            ))}
+
+                            <div className="w-12 h-px bg-white/20 my-4" />
+
                             <Link
-                                key={link.href}
-                                href={link.href}
+                                href="/donate"
                                 onClick={() => setIsOpen(false)}
-                                className="text-xl font-serif text-neutral-900"
+                                className="text-3xl font-serif text-[#FFB81C] hover:text-white transition-colors text-center"
                             >
-                                {t(link.label)}
+                                Donate
                             </Link>
-                        ))}
-                        <Link
-                            href="/donate"
-                            onClick={() => setIsOpen(false)}
-                            className="text-xl font-serif text-neutral-900"
-                        >
-                            Donate
-                        </Link>
-                        <button
-                            onClick={() => {
-                                setLang(lang === 'en' ? 'es' : 'en')
-                                setIsOpen(false)
-                            }}
-                            className="text-sm font-bold uppercase tracking-widest text-[#FFB81C] mt-8"
-                        >
-                            Switch to {lang === 'en' ? 'Español' : 'English'}
-                        </button>
+
+                            <button
+                                onClick={() => {
+                                    setLang(lang === 'en' ? 'es' : 'en')
+                                    setIsOpen(false)
+                                }}
+                                className="text-sm font-bold uppercase tracking-widest text-white/60 hover:text-white mt-8"
+                            >
+                                Switch to {lang === 'en' ? 'Español' : 'English'}
+                            </button>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>
