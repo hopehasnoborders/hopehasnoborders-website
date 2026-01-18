@@ -160,7 +160,7 @@ export default function DetailedProgramOfferings() {
                     />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 md:gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
                     {programs.map((program, index) => (
                         <motion.div
                             key={program.id}
@@ -168,7 +168,7 @@ export default function DetailedProgramOfferings() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="flex flex-col h-full bg-white p-6 rounded-sm shadow-sm hover:shadow-md transition-shadow border-t-4 border-[#FFB81C]"
+                            className="flex flex-col h-full bg-white p-8 rounded-sm shadow-sm hover:shadow-md transition-shadow border-t-4 border-[#FFB81C]"
                         >
                             {/* Header */}
                             <div className="mb-6">
@@ -183,15 +183,15 @@ export default function DetailedProgramOfferings() {
                                 </p>
                             </div>
 
-                            {/* Description */}
+                            {/* Description - Fixed min-height to help alignment */}
                             <div className="prose prose-sm text-neutral-600 mb-8 flex-grow">
-                                <p className="leading-relaxed text-sm">
+                                <p className="leading-relaxed text-base">
                                     {t(program.description)}
                                 </p>
                             </div>
 
-                            {/* Links */}
-                            <div className="space-y-3 mt-auto">
+                            {/* Links - Dynamic Grid for Cards with many links */}
+                            <div className={`mt-auto ${program.links.length > 3 ? 'grid grid-cols-1 sm:grid-cols-2 gap-3' : 'space-y-3'}`}>
                                 {program.links.map((link, idx) => (
                                     <Link
                                         key={idx}
