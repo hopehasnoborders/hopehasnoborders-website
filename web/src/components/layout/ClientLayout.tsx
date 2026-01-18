@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { LanguageProvider } from '@/lib/LanguageContext'
 import { Navigation, Footer } from '@/components/layout'
+import { LanguageBanner } from '@/components/ui/LanguageBanner'
 
 // --- CONFIGURATION ---
 const DEFAULT_BANNER_CONFIG = {
@@ -32,6 +33,7 @@ export function ClientLayout({ children, announcement }: ClientLayoutProps) {
     return (
         <LanguageProvider>
             <div className="min-h-screen flex flex-col">
+                <LanguageBanner />
                 {announcement?.active && <AnnouncementBarClient announcement={announcement} />}
                 <Navigation />
                 <main className="flex-grow">{children}</main>

@@ -8,12 +8,15 @@ interface LanguageContextType {
     lang: Language
     setLang: (lang: Language) => void
     t: (obj: { en?: string; es?: string } | undefined) => string
+    bannerDismissed: boolean
+    dismissBanner: () => void
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
     const [lang, setLangState] = useState<Language>('en')
+    const [bannerDismissed, setBannerDismissed] = useState(true) // Start true to prevent flash
 
     useEffect(() => {
         // Check localStorage for saved preference
@@ -21,11 +24,20 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         if (saved === 'en' || saved === 'es') {
             setLangState(saved)
         }
+
+        // Check if banner was dismissed
+        const bannerState = localStorage.getItem('hhnb-lang-banner-dismissed')
+        setBannerDismissed(bannerState === 'true')
     }, [])
 
     const setLang = (newLang: Language) => {
         setLangState(newLang)
         localStorage.setItem('hhnb-lang', newLang)
+    }
+
+    const dismissBanner = () => {
+        setBannerDismissed(true)
+        localStorage.setItem('hhnb-lang-banner-dismissed', 'true')
     }
 
     // Translation helper - gets the right language or falls back
@@ -35,7 +47,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     return (
-        <LanguageContext.Provider value={{ lang, setLang, t }}>
+        <LanguageContext.Provider value={{ lang, setLang, t, bannerDismissed, dismissBanner }}>
             {children}
         </LanguageContext.Provider>
     )
@@ -48,3 +60,4 @@ export function useLanguage() {
     }
     return context
 }
+

@@ -63,10 +63,11 @@ export function Navigation() {
 
                     <button
                         onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
-                        className={`flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest transition-colors ${textColor} hover:text-[#FFB81C]`}
+                        className="flex items-center gap-2 bg-[#C7D400] text-neutral-900 px-4 py-2 rounded-full text-xs font-bold hover:bg-[#d8e600] transition-all min-h-[36px]"
+                        aria-label={lang === 'en' ? 'Ver sitio en Español' : 'View site in English'}
                     >
-                        <Globe size={14} />
-                        {lang === 'en' ? 'ES' : 'EN'}
+                        <Globe size={16} />
+                        {lang === 'en' ? 'Español' : 'English'}
                     </button>
 
                     <a
@@ -96,6 +97,19 @@ export function Navigation() {
                         exit={{ opacity: 0, y: -20 }}
                         className="fixed inset-0 bg-neutral-900 z-[100] flex flex-col items-center justify-center gap-8 h-[100dvh]"
                     >
+                        {/* Language Toggle - Top of Mobile Menu */}
+                        <button
+                            onClick={() => {
+                                setLang(lang === 'en' ? 'es' : 'en')
+                                setIsOpen(false)
+                            }}
+                            className="flex items-center justify-center gap-3 bg-[#C7D400] text-neutral-900 px-6 py-3 rounded-full text-base font-bold min-h-[48px] mb-8 hover:bg-[#d8e600] transition-colors"
+                            aria-label={lang === 'en' ? 'Ver sitio en Español' : 'View site in English'}
+                        >
+                            <Globe size={20} />
+                            {lang === 'en' ? 'Ver en Español' : 'View in English'}
+                        </button>
+
                         {/* Mobile Menu Content */}
                         <div className="flex flex-col items-center gap-6">
                             {NAV_LINKS.map((link) => (
@@ -120,16 +134,6 @@ export function Navigation() {
                             >
                                 Donate
                             </a>
-
-                            <button
-                                onClick={() => {
-                                    setLang(lang === 'en' ? 'es' : 'en')
-                                    setIsOpen(false)
-                                }}
-                                className="text-sm font-bold uppercase tracking-widest text-white/60 hover:text-white mt-8"
-                            >
-                                Switch to {lang === 'en' ? 'Español' : 'English'}
-                            </button>
                         </div>
                     </motion.div>
                 )}
