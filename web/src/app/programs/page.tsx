@@ -2,7 +2,7 @@ import { sanityFetch } from '@/lib/sanity.server'
 import { programsPageQuery, allProgramsQuery, siteSettingsQuery } from '@/lib/queries'
 import { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/seo'
-import { Hero, ProgramsGrid, CoreServices } from '@/components/sections'
+import { Hero, ProgramsGrid, DetailedProgramOfferings } from '@/components/sections'
 
 async function getProgramsData() {
     const [page, programs, siteSettings] = await Promise.all([
@@ -24,7 +24,7 @@ export default async function ProgramsPage() {
     return (
         <div className="bg-white min-h-screen">
             <Hero hero={page.hero} />
-            <CoreServices />
+            <DetailedProgramOfferings />
             <ProgramsGrid
                 header={{
                     eyebrow: { en: 'Our Impact', es: 'Nuestro Impacto' },
