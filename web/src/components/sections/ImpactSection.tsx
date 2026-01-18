@@ -127,7 +127,7 @@ const DEFAULT_IMPACT_DATA = {
             _id: 'p4',
             title: { en: 'HOPE Host Home Program', es: 'Programa de Alojamiento' },
             summary: { en: 'Transitional Housing', es: 'Vivienda de Transición' },
-            image: '/img/program-housing.jpg',
+            image: '/img/PinataGarage.jpg',
             impactMetrics: [
                 { value: '55', label: { en: 'Individuals Housed', es: 'Individuos Alojados' } },
                 { value: '100%', label: { en: 'Permanent Housing', es: 'Vivienda Permanente' } },
