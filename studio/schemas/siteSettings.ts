@@ -43,8 +43,35 @@ export default defineType({
                     },
                     initialValue: 'normal'
                 }),
-                defineField({ name: 'textColor', title: 'Text Color (Hex)', type: 'string', description: 'Optional. e.g., #000000' }),
-                defineField({ name: 'backgroundColor', title: 'Background Color (Hex)', type: 'string', description: 'Optional. e.g., #FFB81C' }),
+                defineField({
+                    name: 'textColor',
+                    title: 'Text Color',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: 'Black', value: '#000000' },
+                            { title: 'White', value: '#FFFFFF' },
+                            { title: 'Brand Yellow', value: '#FFB81C' },
+                        ],
+                        layout: 'radio'
+                    },
+                    initialValue: '#000000'
+                }),
+                defineField({
+                    name: 'backgroundColor',
+                    title: 'Background Color',
+                    type: 'string',
+                    options: {
+                        list: [
+                            { title: 'Brand Yellow', value: '#FFB81C' },
+                            { title: 'Black', value: '#000000' },
+                            { title: 'White', value: '#FFFFFF' },
+                            { title: 'Emergency Red', value: '#EF4444' },
+                        ],
+                        layout: 'radio'
+                    },
+                    initialValue: '#FFB81C'
+                }),
                 i18nString('label', 'Top Small Label (e.g. "Urgent:")'),
                 i18nText('text', 'Banner Text'),
                 i18nString('linkText', 'Link Text (e.g. "Learn More")'),

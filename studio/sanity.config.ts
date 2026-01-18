@@ -4,6 +4,8 @@ import { visionTool } from '@sanity/vision'
 import { schemaTypes } from './schemas'
 import { deskStructure } from './deskStructure'
 
+
+
 export default defineConfig({
     name: 'default',
     title: 'Hope Has No Borders',
