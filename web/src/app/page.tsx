@@ -1,6 +1,6 @@
 import { sanityFetch } from '@/lib/sanity.server'
 import { homePageQuery, allProgramsQuery, allTestimonialsQuery, siteSettingsQuery } from '@/lib/queries'
-import { Hero, VideoSection, ProgramsGrid, ImpactSection, Testimonials, EducationalGuides } from '@/components/sections'
+import { Hero, VideoSection, ProgramsGrid, ImpactSection, Testimonials, EducationalGuides, PartnersCarousel } from '@/components/sections'
 import { Heart } from 'lucide-react'
 import Link from 'next/link'
 import ClientTranslations from './ClientTranslations'
@@ -79,6 +79,9 @@ export default async function Home() {
       <ImpactSection data={home?.impactSection} />
 
       <Testimonials testimonials={testimonials} />
+
+      {/* Partners Carousel */}
+      <PartnersCarousel />
 
       {/* Mission Footer Quote */}
       <div className="container mx-auto px-6 max-w-4xl text-center py-32">
