@@ -155,6 +155,16 @@ export const resourceCategories: ResourceCategory[] = [
                 link: "https://example.com/register", // Need real link from user content if available or use generic
                 action: { en: "Register Here", es: "Regístrate Aquí" },
                 tags: ["asylum", "form", "i-589", "application", "help"]
+            },
+            {
+                title: { en: "The Center for Trauma & Resilience", es: "El Centro de Trauma y Resiliencia" },
+                description: {
+                    en: "Culturally and linguistically responsive services for victims of crime and trauma.",
+                    es: "Servicios cultural y lingüísticamente receptivos para víctimas de crimen y trauma."
+                },
+                link: "http://www.traumahealth.org",
+                action: { en: "Visit Website", es: "Visitar Sitio Web" },
+                tags: ["trauma", "health", "mental", "support"]
             }
         ]
     },
@@ -266,7 +276,7 @@ export const resourceCategories: ResourceCategory[] = [
                     en: "50% discounts on car repairs and free inspections for single moms in Denver working 16+ hrs/week.",
                     es: "50% de descuento en reparaciones y inspecciones gratuitas para madres solteras en Denver que trabajan 16+ hrs/semana."
                 },
-                link: "https://sparkhopedenver.org", // Verify link if possible, assuming organization name
+                link: "https://www.sparkhopeautomotive.org",
                 action: { en: "Learn More", es: "Aprende Más" },
                 tags: ["repair", "fix", "mechanic", "inspection", "moms"]
             }

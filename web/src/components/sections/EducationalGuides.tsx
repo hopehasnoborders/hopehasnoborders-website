@@ -17,28 +17,28 @@ const AVAILABLE_GUIDES: Guide[] = [
             en: 'Understanding Rental Agreements (and avoiding scams)',
             es: 'Entendiendo los Contratos de Alquiler (y evitando estafas)'
         },
-        link: '#rental-agreements'
+        link: 'https://www.hud.gov/states/colorado/renting/tenantrights'
     },
     {
         title: {
             en: 'Domestic Violence (understanding definition and ways to get help)',
             es: 'Violencia Doméstica (comprender la definición y formas de obtener ayuda)'
         },
-        link: '#domestic-violence'
+        link: 'https://www.thefamilytree.org'
     },
     {
         title: {
             en: 'English Learner (EL) Family Toolkit for Students',
             es: 'Kit de Herramientas para Familias de Estudiantes Aprendices de Inglés (EL)'
         },
-        link: '#el-toolkit'
+        link: 'https://ncela.ed.gov/family-toolkit'
     },
     {
         title: {
             en: 'Wage Theft',
             es: 'Robo de Salarios'
         },
-        link: '#wage-theft'
+        link: 'http://www.centrodetrabajadores.org'
     }
 ]
 

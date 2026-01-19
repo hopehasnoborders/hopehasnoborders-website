@@ -296,6 +296,116 @@ export default function TeamPage() {
                 </div>
             </section>
 
+            {/* Our Story Section */}
+            <section className="py-20 bg-neutral-50 border-t border-neutral-200">
+                <div className="container mx-auto px-6 max-w-4xl">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <div className="text-center mb-12">
+                            <Heart className="w-8 h-8 text-[#FFB81C] mx-auto mb-4" />
+                            <h2 className="text-3xl md:text-4xl font-serif text-neutral-900 mb-6">
+                                {t({ en: 'Our Story', es: 'Nuestra Historia' })}
+                            </h2>
+                        </div>
+                        <div className="prose prose-lg mx-auto text-neutral-600 font-light leading-relaxed space-y-6">
+                            <p>
+                                {t({
+                                    en: "Hope Has No Borders blossomed from Denver's grassroots movement, ignited by compassionate moms and neighbors. Our journey sparked from a heartfelt commitment to addressing a humanitarian crisis as thousands of migrants were bussed into our city. Faced with urgent needs, like housing for children and individuals living on our streets, feeding hungry people, and ensuring newcomers arriving in sandals had winter clothing, we swiftly mobilized.",
+                                    es: "Hope Has No Borders surgió del movimiento popular de Denver, iniciado por madres y vecinos compasivos. Nuestro viaje comenzó con un compromiso sincero de abordar una crisis humanitaria mientras miles de migrantes eran transportados en autobús a nuestra ciudad. Ante necesidades urgentes, como vivienda para niños y personas que viven en nuestras calles, alimentación para personas hambrientas y asegurar que los recién llegados que llegaban en sandalias tuvieran ropa de invierno, nos movilizamos rápidamente."
+                                })}
+                            </p>
+                            <p>
+                                {t({
+                                    en: "Within four days in early November 2023, 1000 moms and neighbors were mobilized, and in 12 weeks, our grassroots movement grew to over 6000 in the metro area. Today, we stand strong with over 8k (and counting) committed individuals dedicated to meeting needs and bringing hope to our city. As our grassroots movement expanded, we recognized the crucial need for stable housing and employment.",
+                                    es: "En cuatro días a principios de noviembre de 2023, se movilizaron 1000 madres y vecinos, y en 12 semanas, nuestro movimiento de base creció a más de 6000 en el área metropolitana. Hoy, nos mantenemos firmes con más de 8k (y contando) personas comprometidas dedicadas a satisfacer las necesidades y traer esperanza a nuestra ciudad. A medida que nuestro movimiento de base se expandió, reconocimos la necesidad crucial de vivienda estable y empleo."
+                                })}
+                            </p>
+                            <p>
+                                {t({
+                                    en: "Witnessing the generosity of hundreds of volunteers opening their hearts and homes, we structured our official Host Home Program. This initiative connects community members with spare space to migrants in need of transitional housing. Additionally, we heard the resounding desire for work, not handouts. Migrants volunteered to help one another in a vast distribution closet formed by our grassroots movement. In a similar fashion our community service program is designed to empower newcomers to engage in various volunteer service projects, showcasing their value and work ethic while providing opportunities for skill development, reference-building, and financial support through gifted donations.",
+                                    es: "Al presenciar la generosidad de cientos de voluntarios que abrieron sus corazones y hogares, estructuramos nuestro Programa oficial de Hogares de Acogida. Esta iniciativa conecta a los miembros de la comunidad con espacio libre con migrantes que necesitan vivienda de transición. Además, escuchamos el deseo rotundo de trabajar, no de recibir limosnas. Los migrantes se ofrecieron como voluntarios para ayudarse mutuamente en un vasto armario de distribución formado por nuestro movimiento de base. De manera similar, nuestro programa de servicio comunitario está diseñado para empoderar a los recién llegados para que participen en varios proyectos de servicio voluntario, mostrando su valor y ética de trabajo mientras brindan oportunidades para el desarrollo de habilidades, la creación de referencias y el apoyo financiero a través de donaciones."
+                                })}
+                            </p>
+                            <p>
+                                {t({
+                                    en: "Anchored in our grassroots origins in Denver, our aim is to nurture a supportive environment fostering integration, cultural connections, and meaningful contributions to our vibrant community. Together, we are replacing crisis with HOPE.",
+                                    es: "Anclados en nuestros orígenes de base en Denver, nuestro objetivo es fomentar un entorno de apoyo que fomente la integración, las conexiones culturales y las contribuciones significativas a nuestra vibrante comunidad. Juntos, estamos reemplazando la crisis con ESPERANZA."
+                                })}
+                            </p>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Press Section */}
+            <section className="py-20 bg-white border-t border-neutral-200">
+                <div className="container mx-auto px-6 max-w-5xl">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-3xl md:text-4xl font-serif text-neutral-900 mb-12 text-center">
+                            {t({ en: 'In The News', es: 'En Las Noticias' })}
+                        </h2>
+
+                        <div className="grid md:grid-cols-2 gap-8">
+                            <a href="https://www.9news.com/article/news/politics/clinic-immigration-challenges-venezuelans/73-e8c5b57a-9608-4b78-86bf-7fdfc09266fa" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">9 News</h3>
+                                    <p className="text-neutral-600 font-serif">Clinic offers hope amid complex immigration challenges for Venezuelan families</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.denver7.com/news/local-news/new-denver-program-aims-to-help-match-host-homes-with-newly-arrived-immigrant-families" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">Denver 7</h3>
+                                    <p className="text-neutral-600 font-serif">New Denver program aims to help match host homes with newly arrived immigrant families</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.nytimes.com/2024/02/12/us/denver-colorado-migrants.html" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">The New York Times</h3>
+                                    <p className="text-neutral-600 font-serif">Big Burden of Migrant Influx Strains Denver</p>
+                                </div>
+                            </a>
+
+                            <a href="https://denverite.com/2024/04/28/host-a-new-immigrant-family-denver-mile-high-united-way/" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">Denverite</h3>
+                                    <p className="text-neutral-600 font-serif">Want to host a new immigrant family? There’s an official program for that</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.axios.com/local/denver/2024/05/08/immigrant-housing-211-program-new-shelter" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">AXIOS Denver</h3>
+                                    <p className="text-neutral-600 font-serif">Denver wants families to host migrants through 211 program</p>
+                                </div>
+                            </a>
+
+                            <a href="https://www.9news.com/article/news/local/next/next-with-kyle-clark/400-migrant-families-housed-highlands-moms-and-neighbors/73-9c6c46a5-1ed8-413f-a270-31d7589801eb" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">9 News</h3>
+                                    <p className="text-neutral-600 font-serif">Over 400 migrant families now being housed by Highlands Moms and Neighbors</p>
+                                </div>
+                            </a>
+
+                            <a href="https://denverite.com/2024/01/09/denver-migrants-mutual-aid-moms-helping/" target="_blank" rel="noopener noreferrer" className="block group">
+                                <div className="border-l-4 border-[var(--yarrow)] pl-6 py-2 group-hover:bg-neutral-50 transition-colors">
+                                    <h3 className="font-bold text-lg text-neutral-900 group-hover:text-[var(--forrest)] transition-colors mb-2">Denverite</h3>
+                                    <p className="text-neutral-600 font-serif">How a Facebook community of Denver moms are meeting the needs of new migrant arrivals</p>
+                                </div>
+                            </a>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
             {/* Tax Info Section */}
             <section className="py-16 bg-neutral-100">
                 <div className="container mx-auto px-6 text-center">
